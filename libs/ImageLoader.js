@@ -3,5 +3,6 @@
 function imageLoader({ src }) {
     return `${src}`
   }
+
   
-  module.exports = imageLoader
+  module.exports = imageLoader;

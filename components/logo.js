@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Text, useColorModeValue } from '@chakra-ui/react'
 import styled from '@emotion/styled'
-import imageLoader from '../libs/loader'
+import imageLoader from '../libs/ImageLoader'
 const LogoBox = styled.span`
 font-size: 32px;
 font-family: Caveat;

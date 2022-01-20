@@ -2,7 +2,7 @@ import NextLink from 'next/link'
 import Image from 'next/image'
 import { Box, Text, LinkBox, LinkOverlay } from '@chakra-ui/react'
 import {Global } from '@emotion/react'
-import imageLoader from '../libs/loader'
+import imageLoader from '../libs/ImageLoader'
 export const GridItem=({children, href, title, thumbnail })=>(
     <Box w="100%" align="center">
         <LinkBox cursor="pointer">
