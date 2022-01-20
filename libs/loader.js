@@ -5,4 +5,4 @@ function imageLoader({ src }) {
   }
 
   
-  module.exports = imageLoader;
+  module.exports = imageLoader
