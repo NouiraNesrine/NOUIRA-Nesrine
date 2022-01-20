@@ -19,6 +19,8 @@ import thumbArch from '../public/certificat/softwareArchitecture.png'
 
 import CuteCat from '../components/layouts/cute-cat'
 import NoSsr from '../components/no-ssr'
+
+
 const Certifs = () => (
     <Layout title="Resume">
         <Container pt={50}>
