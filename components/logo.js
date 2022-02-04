@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Text, useColorModeValue } from '@chakra-ui/react'
 import styled from '@emotion/styled'
-import imageLoader from '../libs/loader'
 const LogoBox = styled.span`
 font-size: 32px;
 font-family: Caveat;
@@ -18,14 +17,14 @@ padding: 10px;
 
 const Logo = () => {
     const footPrintImg = `/images/footprint${useColorModeValue('', '-dark')}.png`
-    return(
+    return (
         <Link href="/">
             <a>
                 <LogoBox>
-                    <Image src={footPrintImg} loader={imageLoader} width={35} height={35} alt="logo"/>
-                    <Text  style={{color:useColorModeValue('#ffaeb2','#ffd2b8')}} ml={3} >
-                            Nesrine Nouira
-                        </Text>
+                    <Image src={footPrintImg} width={35} height={35} alt="logo" />
+                    <Text style={{ color: useColorModeValue('#ffaeb2', '#ffd2b8') }} ml={3} >
+                        Nesrine Nouira
+                    </Text>
 
                 </LogoBox>
             </a>

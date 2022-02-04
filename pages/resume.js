@@ -1,12 +1,10 @@
-import { Container, useColorModeValue, Heading, SimpleGrid } from '@chakra-ui/react'
+import { Container, Heading, SimpleGrid, Link } from '@chakra-ui/react'
 import Layout from '../components/layouts/articale'
 import Section from '../components/section'
 import { GridItem } from '../components/grid-item'
-import { ResumeSection, ResumeYear, ResumeDegree, ResumePlace, ResumeDesc, ResumeDegreee } from "../components/resume-section"
+import { ResumeSection, ResumeYear, ResumeDegree, ResumePlace, ResumeDesc } from "../components/resume-section"
 import { Skill, SkillSection, Description } from '../components/skill-section'
 
-import thumbNutSamy from '../public/images/work/nutsamy.jpg'
-import thumbMina from '../public/images/work/blackswan.jpg'
 import thumbComm from '../public/certificat/communication.png'
 import thumbNlp from '../public/certificat/nlp.png'
 import thumbSoft from '../public/certificat/softSkills.png'
@@ -19,7 +17,6 @@ import thumbArch from '../public/certificat/softwareArchitecture.png'
 
 import CuteCat from '../components/layouts/cute-cat'
 import NoSsr from '../components/no-ssr'
-
 
 const Certifs = () => (
     <Layout title="Resume">
@@ -52,27 +49,30 @@ const Certifs = () => (
                 </Heading>
                 <ResumeSection>
                     <ResumeYear style={{ fontSize: 18 }} > 2021 </ResumeYear>
-                    <ResumeDegree style={{ fontSize: 18 }}> Development of mobile app for CKD patients </ResumeDegree>
+                    <ResumeDegree style={{ fontSize: 18 }}> Software Engineer </ResumeDegree>
                     <ResumePlace style={{ fontSize: 13 }} > The Military Instruction Hospital of Tunis, Tunis, Tunisa</ResumePlace>
-                    <ResumeDesc style={{ fontSize: 15 }}> Development of nutritional app with Android , NodeJs and MongoDB.
-                        Development of a chat-bot using python, nltk library and flask.
+                    <ResumeDesc style={{ fontSize: 15 }}> Design and development of a nutritional mobile application dedicated to chronic kidney disease (CKD) patients. The proposed solution contains a large database of Tunisian food, a journalistic feature that enables the medical team to keep an eye on their patients' diet, accurate calculation of mineral and vitamins content, and a chatbot that is responsible for answering questions related to kidney disease and failure and complication measurements.
+                        <br />Environment : Android Studio, Java, MongoDB, NodeJs, ExpressJs, Python, Flask, MVVC, MVC, Rest.
                     </ResumeDesc>
                 </ResumeSection>
                 <ResumeSection>
                     <ResumeYear style={{ fontSize: 18 }} > 2021 </ResumeYear>
                     <ResumeDegree style={{ fontSize: 18 }}> Teacher Assistant/Coach </ResumeDegree>
                     <ResumePlace style={{ fontSize: 13 }} > ESPRIT, Ariana, Tunisa</ResumePlace>
-                    <ResumeDesc style={{ fontSize: 15 }}> Assisted in Spring courses and helped students with technical issues.
-                        Coached in Angular projects.
+                    <ResumeDesc style={{ fontSize: 15 }}> Worked as teacher assistant - Spring courses.
+                        Worked as Coach and helped students with their end of year projects - (Angular, .Net, Spring).
                     </ResumeDesc>
                 </ResumeSection>
                 <ResumeSection>
                     <ResumeYear style={{ fontSize: 18 }} > 2018 </ResumeYear>
-                    <ResumeDegree style={{ fontSize: 18 }}> Translating BigBlueButton modules to NodeJs</ResumeDegree>
+                    <ResumeDegree style={{ fontSize: 18 }}> Web Developer </ResumeDegree>
                     <ResumePlace style={{ fontSize: 13 }} > READVICE, Tunis, Tunisia</ResumePlace>
-                    <ResumeDesc style={{ fontSize: 15 }}> Development of a desktop application using the Electron framework and PHP.
-                        Translation of BigBlueButton modules from PHP to NodeJs.
-                        Development of unit tests.
+                    <ResumeDesc style={{ fontSize: 15 }}> Redesign of  {''}
+                        <Link href="https://bigbluebutton.org" >
+                            BigBlueButton
+                        </Link> meeting APIs to NodeJS . Development of a desktop application to manage meetings and store records.<br />
+                        Environment : NodeJs, PHP, XML, SQL, Electron, Bitbucket, AWS Desk, Jira.
+
                     </ResumeDesc>
                 </ResumeSection>
             </Section>

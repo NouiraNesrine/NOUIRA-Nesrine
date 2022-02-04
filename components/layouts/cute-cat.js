@@ -1,49 +1,48 @@
-import {useState, useEffect, useRef, useCallback} from 'react'
-import{Box, Spinner } from '@chakra-ui/react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { Box, Spinner } from '@chakra-ui/react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import {loadGLTFModel  } from '../../libs/model'
-import { render } from 'react-dom'
+import { loadGLTFModel } from '../../libs/model'
 
-function easeOutCirc(x){
-    return Math.sqrt(1 - Math.pow(x -1,4))
+function easeOutCirc(x) {
+    return Math.sqrt(1 - Math.pow(x - 1, 4))
 }
 
-const CuteCat = ()=>{
+const CuteCat = () => {
     const refContainer = useRef()
-    const [loading,setLoading] = useState(true)
-    const [renderer,setRenderer] = useState()
-    const [_camera,setCamera] = useState()
-    const [target]= useState(new THREE.Vector3(0, 1.2, 0))
+    const [loading, setLoading] = useState(true)
+    const [renderer, setRenderer] = useState()
+    const [_camera, setCamera] = useState()
+    const [target] = useState(new THREE.Vector3(0, 1.2, 0))
     const [initialCameraPosition] = useState(
         new THREE.Vector3(
-            20*Math.sin(0.2*Math.PI),
+            20 * Math.sin(0.2 * Math.PI),
             10,
-            20*Math.cos(0.2*Math.PI)
+            20 * Math.cos(0.2 * Math.PI)
         )
     )
-    const [scene]= useState(new THREE.Scene())
-    const [_controls,setControls]= useState()
-    const handleWindowResize =  useCallback(()=> {
+    const [scene] = useState(new THREE.Scene())
+    const [_controls, setControls] = useState()
+    const handleWindowResize = useCallback(() => {
         const { current: container } = refContainer
-        if( container && renderer ){
+        if (container && renderer) {
             const scW = container.clientWidth
             const scH = container.clientHeight
-            renderer.setSize(scW,scH)
+            renderer.setSize(scW, scH)
         }
-    },[renderer])
+    }, [renderer])
     /* eslint-disable react-hooks/exhaustive-deps */
-    useEffect(()=>{
-        const{current:container} = refContainer
-        if(container && !renderer){
-            const scW= container.clientWidth
-            const scH= container.clientHeight
+    useEffect(() => {
+        const { current: container } = refContainer
+        if (container && !renderer) {
+            const scW = container.clientWidth
+            const scH = container.clientHeight
             const renderer = new THREE.WebGLRenderer({
                 antialias: true,
                 alpha: true
             })
             renderer.setPixelRatio(window.devicePixelRatio)
-            renderer.setSize(scW,scH)
+            renderer.setSize(scW, scH)
             renderer.outputEncoding = THREE.sRGBEncoding
             container.appendChild(renderer.domElement)
             setRenderer(renderer)
@@ -62,57 +61,57 @@ const CuteCat = ()=>{
             camera.lookAt(target)
             setCamera(camera)
 
-            const ambientLight = new THREE.AmbientLight(0xcccccc,1.19)
+            const ambientLight = new THREE.AmbientLight(0xcccccc, 1.19)
             scene.add(ambientLight)
-            const controls = new OrbitControls(camera,renderer.domElement)
+            const controls = new OrbitControls(camera, renderer.domElement)
             controls.autoRotate = true
             controls.target = target
             setControls(controls)
-            loadGLTFModel(scene,'/cute_cat_with_strawberries/scene.gltf',{
+            loadGLTFModel(scene, '/cute_cat_with_strawberries/scene.gltf', {
                 reveiveShadow: false,
                 castShadow: false
-            }).then(()=>{
+            }).then(() => {
                 animate()
                 setLoading(false)
             })
 
             let req = null
             let frame = 0
-            const animate= ()  =>{
+            const animate = () => {
                 req = requestAnimationFrame(animate)
                 frame = frame <= 100 ? frame + 1 : frame
-                if(frame<=100){
+                if (frame <= 100) {
                     const p = initialCameraPosition
-                    const rotSpeed = -easeOutCirc(frame/120)*Math.PI* 20
+                    const rotSpeed = -easeOutCirc(frame / 120) * Math.PI * 20
                     camera.position.y = 0
-                    camera.position.x = p.x * Math.cos(rotSpeed) + p.z*Math.sin(rotSpeed)
-                    camera.position.z = p.z * Math.cos(rotSpeed)- p.x * Math.sin(rotSpeed)
+                    camera.position.x = p.x * Math.cos(rotSpeed) + p.z * Math.sin(rotSpeed)
+                    camera.position.z = p.z * Math.cos(rotSpeed) - p.x * Math.sin(rotSpeed)
                     camera.lookAt(target)
-                }else{
+                } else {
                     controls.update()
                 }
                 renderer.render(scene, camera)
             }
-            return ()=>{
+            return () => {
                 cancelAnimationFrame(req)
                 renderer.dispose()
             }
         }
-    },[])
+    }, [])
 
-    useEffect(()=>{
-        window.addEventListener('resize',handleWindowResize, false)
-        return()=>{
-            window.removeEventListener('resize',handleWindowResize,false)
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowResize, false)
+        return () => {
+            window.removeEventListener('resize', handleWindowResize, false)
         }
-    },[renderer,handleWindowResize])
+    }, [renderer, handleWindowResize])
 
     return (
-        <Box  ref={refContainer} className='voxel-dog' m="auto"  mt={['-20px','-30px','-85px']}  ml={['40px','10px','-60px']}
-        mb={['-100px','-180px','-250px']} w={[280,480,640]} h={[280,480,640]} position='relative'>
+        <Box ref={refContainer} className='voxel-dog' m="auto" mt={['-20px', '-30px', '-85px']} ml={['40px', '10px', '-60px']}
+            mb={['-100px', '-180px', '-250px']} w={[280, 480, 640]} h={[280, 480, 640]} position='relative'>
             {loading && (
-                <Spinner  size="xl" position="absolute" left="50%" top="50%" ml="calc(0px - var(--spinner-size) / 2)"
-                mt="calc(0px- var--spinner-size))"/>
+                <Spinner size="xl" position="absolute" left="50%" top="50%" ml="calc(0px - var(--spinner-size) / 2)"
+                    mt="calc(0px- var--spinner-size))" />
             )}
         </Box>
     )
